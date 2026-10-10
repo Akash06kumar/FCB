@@ -1,0 +1,215 @@
+{
+  "brand": {
+    "name": "FCB Cake Wala",
+    "tagline": "Aurangabad's Premier Artisanal Bakery & Custom Cake Studio",
+    "business_type": "Bakery & Patisserie",
+    "rating": "4.9/5 Google Rating (120+ Verified Local Reviews)",
+    "location": "Shop No - 01, Mahesh Academy School, MG Rd, near Maheshwaram Temple, Aurangabad, Bihar 824101",
+    "operating_hours": "9:00 AM - 9:00 PM (Mon - Sun)",
+    "phone": "+91 98765 43210",
+    "whatsapp": "+91 98765 43210"
+  },
+  "design_archetype": {
+    "archetype_name": "LUXURY PATISSERIE & HIGH-CONTRAST NEON ACCENT",
+    "vibe": "Warm luxury patisserie meets welcoming local bakery. Rich dark chocolate espresso tones paired with warm cream, champagne gold, and vibrant neon pink highlights inspired by the physical shop's signature neon sign.",
+    "theme_mode": "Hybrid Light/Dark support with default dark-luxury royal hero and warm cream section layers."
+  },
+  "typography": {
+    "font_family_heading": "'Playfair Display', 'Cormorant Garamond', serif",
+    "font_family_body": "'Plus Jakarta Sans', 'Inter', sans-serif",
+    "font_family_accent": "'Outfit', 'Cabinet Grotesk', sans-serif",
+    "headline_styles": {
+      "h1": "text-4xl sm:text-5xl lg:text-6xl font-serif font-bold tracking-tight leading-tight text-amber-50",
+      "h2": "text-2xl sm:text-3xl lg:text-4xl font-serif font-bold tracking-tight text-amber-100",
+      "h3": "text-xl sm:text-2xl font-serif font-semibold text-amber-200",
+      "h4": "text-lg sm:text-xl font-sans font-medium text-amber-50"
+    },
+    "body_styles": {
+      "main": "text-base text-neutral-300 leading-relaxed",
+      "subtle": "text-sm text-neutral-400 leading-normal",
+      "accent_label": "text-xs uppercase tracking-[0.2em] font-semibold text-amber-400"
+    }
+  },
+  "colors": {
+    "background_primary": "#140F0E",
+    "background_secondary": "#1E1614",
+    "background_card": "#261D1A",
+    "background_light_section": "#FAF6F0",
+    "primary_gold": "#D4AF37",
+    "primary_gold_hover": "#E5B869",
+    "accent_pink": "#EC4899",
+    "accent_pink_glow": "#F472B6",
+    "accent_cream": "#FAF6F0",
+    "text_main": "#FDFBF7",
+    "text_muted": "#A89F91",
+    "border_subtle": "rgba(212, 175, 55, 0.15)",
+    "border_hover": "rgba(212, 175, 55, 0.4)",
+    "badge_lgbtq": "linear-gradient(135deg, #FF597B 0%, #FF8E9E 50%, #FFC0D9 100%)",
+    "badge_accessibility": "#10B981"
+  },
+  "layout_and_spacing": {
+    "container_padding": "px-4 sm:px-8 lg:px-12 max-w-7xl mx-auto",
+    "section_spacing": "py-16 md:py-24",
+    "bento_grid_mode": "MODE A: TETRIS GRID for Cake Gallery & Signature Specials",
+    "grid_structure": "grid grid-cols-1 md:grid-cols-8 lg:grid-cols-12 gap-6 md:gap-8"
+  },
+  "components_structure": [
+    {
+      "name": "Header & Sticky Navigation",
+      "component_path": "src/components/Navbar.js",
+      "description": "Glassmorphic floating header with brand logo, live status (Open Now 9am-9pm), navigation links, Google 4.9 badge, and instant CTA buttons (Order on WhatsApp & Call Shop).",
+      "test_ids": {
+        "nav_container": "navbar",
+        "logo": "nav-logo",
+        "link_menu": "nav-link-menu",
+        "link_about": "nav-link-about",
+        "link_gallery": "nav-link-gallery",
+        "link_location": "nav-link-location",
+        "cta_whatsapp": "nav-cta-whatsapp",
+        "cta_call": "nav-cta-call"
+      }
+    },
+    {
+      "name": "Hero Section",
+      "component_path": "src/components/HeroSection.js",
+      "description": "Dramatic visual hero with high-contrast text overlay, real cake shop image showcase, Google 4.9 Star Rating floating pill, distance badge in Aurangabad, quick delivery pills, and dual conversion buttons.",
+      "test_ids": {
+        "rating_badge": "hero-rating-badge",
+        "title": "hero-title",
+        "subtitle": "hero-subtitle",
+        "btn_custom_order": "hero-btn-custom-order",
+        "btn_view_menu": "hero-btn-view-menu",
+        "quick_info_pills": "hero-info-pills"
+      }
+    },
+    {
+      "name": "Menu & Specialties Showcase",
+      "component_path": "src/components/MenuSection.js",
+      "description": "Interactive cake & bakery menu featuring Royal Special Cake, Pastry, Pineapple Cake, Fresh Fruit Cake, Custom Celebration Cakes, and Eggless variants with price tags, filter tabs, and quick order modal.",
+      "test_ids": {
+        "menu_container": "menu-section",
+        "filter_all": "menu-filter-all",
+        "filter_signature": "menu-filter-signature",
+        "filter_fruit": "menu-filter-fruit",
+        "filter_pastry": "menu-filter-pastry",
+        "cake_card_royal": "menu-card-royal-special",
+        "cake_card_pineapple": "menu-card-pineapple",
+        "cake_card_fruit": "menu-card-fresh-fruit",
+        "cake_card_pastry": "menu-card-pastry",
+        "btn_order_item": "menu-btn-order-item"
+      }
+    },
+    {
+      "name": "Services & Inclusion Badges",
+      "component_path": "src/components/ServicesSection.js",
+      "description": "Features section highlighting Delivery, Drive-through, In-store pick-up, In-store shopping, Takeaway, Dine-in, Free street parking, LGBTQ+ friendly badge, and Wheelchair accessibility.",
+      "test_ids": {
+        "services_container": "services-section",
+        "badge_lgbtq": "service-badge-lgbtq",
+        "badge_wheelchair": "service-badge-wheelchair",
+        "badge_parking": "service-badge-parking",
+        "badge_delivery": "service-badge-delivery",
+        "badge_drivethrough": "service-badge-drivethrough"
+      }
+    },
+    {
+      "name": "Photo Gallery (Tetris Bento Grid)",
+      "component_path": "src/components/GallerySection.js",
+      "description": "Asymmetric Bento gallery featuring real photos of FCB Cake Wala interior, neon storefront, tiered wedding cakes, dessert display cases, and fresh pastries.",
+      "test_ids": {
+        "gallery_container": "gallery-section",
+        "gallery_item": "gallery-item"
+      }
+    },
+    {
+      "name": "Custom Cake Order & Enquiry Form",
+      "component_path": "src/components/EnquiryForm.js",
+      "description": "Interactive order request form for custom birthday/wedding cakes, flavor selection, weight choice, date picker, delivery address in Aurangabad, and special instructions connected to FastAPI backend.",
+      "test_ids": {
+        "form_container": "enquiry-form-section",
+        "input_name": "enquiry-input-name",
+        "input_phone": "enquiry-input-phone",
+        "select_cake_type": "enquiry-select-cake-type",
+        "select_weight": "enquiry-select-weight",
+        "input_date": "enquiry-input-date",
+        "input_message": "enquiry-input-message",
+        "submit_button": "enquiry-submit-button",
+        "success_toast": "enquiry-success-toast"
+      }
+    },
+    {
+      "name": "Location & Store Information",
+      "component_path": "src/components/LocationSection.js",
+      "description": "Full location details (MG Rd, Mahesh Academy School, near Maheshwaram Temple, Aurangabad, Bihar 824101), operating hours 9am-9pm, Google Maps embedded link, landmark guidance, and call buttons.",
+      "test_ids": {
+        "location_container": "location-section",
+        "address_card": "location-address-card",
+        "hours_card": "location-hours-card",
+        "maps_btn": "location-maps-button",
+        "landmark_info": "location-landmark-info"
+      }
+    },
+    {
+      "name": "Customer Reviews & Social Proof",
+      "component_path": "src/components/ReviewsSection.js",
+      "description": "Google Rating 4.9 spotlight with verified local customer testimonials praise for Royal Special Cake, fresh delivery, and friendly service.",
+      "test_ids": {
+        "reviews_container": "reviews-section",
+        "google_rating_hero": "reviews-google-rating-hero",
+        "review_card": "review-card"
+      }
+    },
+    {
+      "name": "Footer",
+      "component_path": "src/components/Footer.js",
+      "description": "Rich dark footer with grand typography, quick links, LGBTQ+ friendly & accessibility statements, address breakdown, copyright, and sticky mobile quick-call bar.",
+      "test_ids": {
+        "footer_container": "footer-section",
+        "footer_call_btn": "footer-call-btn",
+        "footer_whatsapp_btn": "footer-whatsapp-btn"
+      }
+    }
+  ],
+  "image_urls": [
+    {
+      "category": "Hero / Signature Cakes",
+      "url": "https://images.unsplash.com/photo-1583338917451-face2751d8d5?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTB8MHwxfHNlYXJjaHwxfHxnb3VybWV0JTIwY2FrZSUyMHBhdGlzc2VyaWUlMjBiYWtlcnklMjBzbGljZXMlMjBkZXDessVydHxlbnwwfHx8fDE3OTE2NTAyNTN8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Assorted fruit tarts and royal chocolate cakes on glass shelves"
+    },
+    {
+      "category": "Menu - Royal Special Cake",
+      "url": "https://images.unsplash.com/photo-1643733645069-76bac4462103?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTB8MHwxfHNlYXJjaHwzfHxnb3VybWV0JTIwY2FrZSUyMHBhdGlzc2VyaWUlMjBiYWtlcnklMjBzbGljZXMlMjBkZXDessVydHxlbnwwfHx8fDE3OTE2NTAyNTN8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Royal chocolate layered slice with rich icing and cherry embellishment"
+    },
+    {
+      "category": "Menu - Display & Pastries",
+      "url": "https://images.unsplash.com/photo-1683223063461-5d5a35bef2a2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTB8MHwxfHNlYXJjaHw0fHxnb3VybWV0JTIwY2FrZSUyMHBhdGlzc2VyaWUlMjBiYWtlcnklMjBzbGljZXMlMjBkZXDessVydHxlbnwwfHx8fDE3OTE2NTAyNTN8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Fresh fruit tarts and pastries arranged in patisserie display counter"
+    },
+    {
+      "category": "Menu - Fresh Fruit & Pineapple Cake",
+      "url": "https://images.unsplash.com/photo-1639832899627-5d77c5ce1eb8?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTB8MHwxfHNlYXJjaHwyfHxnb3VybWV0JTIwY2FrZSUyMHBhdGlzc2VyaWUlMjBiYWtlcnklMjBzbGljZXMlMjBkZXDessVydHxlbnwwfHx8fDE3OTE2NTAyNTN8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Freshly decorated cream cakes with seasonal fruits"
+    }
+  ],
+  "motion_and_animations": {
+    "library": "framer-motion",
+    "scroll_behavior": "Smooth scroll enabled with subtle Lenis effect or CSS smooth-scroll",
+    "hero_animations": "Staggered fade-up for headline, badge, and CTA buttons",
+    "hover_effects": "Card lift (-translate-y-2), glowing border glow on primary CTAs, image scale on gallery hover (scale-105 transition-transform duration-500)"
+  },
+  "instructions_to_main_agent": [
+    "Build a complete, responsive, highly converting local bakery web app in React JS + Tailwind + Framer Motion + Lucide Icons + Shadcn UI.",
+    "Implement the backend endpoints in FastAPI for handling custom cake order enquiries (`POST /api/enquiry`) and saving to MongoDB or in-memory fallback.",
+    "Ensure ALL interactive elements have clear `data-testid` attributes as specified in `components_structure`.",
+    "Highlight key selling points: Google 4.9 Star Rating, Royal Special Cake, Pineapple Cake, Fresh Fruit Cake, LGBTQ+ Friendly, Wheelchair Accessible, Free Parking, Opening hours 9am-9pm.",
+    "Include a sticky mobile action bar with Quick Call and WhatsApp Order buttons for high mobile conversion.",
+    "Use Lucide icons (Lucide-react) for icons like Phone, MapPin, Clock, Star, ShoppingBag, Heart, ShieldCheck, Wheelchair, Car, Truck."
+  ],
+  "UNIVERSAL GUIDELINES FOR MAIN AGENT": [
+    "Avoid default centered designs or generic templates. Create rich visual hierarchy with asymmetric bento layouts, fine gold borders, and ambient dark chocolate hues.",
+    "DO NOT use full screen gradients without tint or texture.",
+    "Ensure contrast ratio is WCAG AA compliant on all text elements.",
+    "Always provide data-testid on interactive buttons, inputs, links, cards, and section containers."
+  ]
+}

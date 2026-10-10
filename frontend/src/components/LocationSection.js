@@ -52,6 +52,17 @@ export const LocationSection = () => (
           </div>
         </div>
       </div>
+
+      <div className="mt-6 rounded-3xl overflow-hidden border border-[#E8DED2] shadow-md">
+        <iframe
+          title="FCB Cake Wala on Google Maps"
+          data-testid="location-map-embed"
+          src="https://maps.google.com/maps?q=FCB%20Cake%20Wala%20MG%20Road%20near%20Maheshwaram%20Temple%20Aurangabad%20Bihar%20824101&t=&z=16&ie=UTF8&iwloc=&output=embed"
+          className="w-full h-80 md:h-96"
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        />
+      </div>
     </div>
   </section>
 );

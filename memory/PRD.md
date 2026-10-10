@@ -37,6 +37,12 @@ Build a premium, modern, highly converting local food business website for FCB C
 - WhatsApp ordering live: green WhatsApp buttons in navbar, hero, footer and mobile quick bar → wa.me/918252244536 with prefilled order message.
 - Real Google reviews published: Alok Kumar, Rimjhim Kumari, Gauri Singh (replaced all sample reviews).
 
+## Updates (2026-07, round 3)
+- Photo Cake Upload: enquiry form now accepts an optional reference photo (jpg/png ≤ 8 MB). Stored in Emergent object storage via POST /api/uploads, served via GET /api/files/{path}, path saved on the enquiry (`photo_path`).
+- WhatsApp Enquiry Alerts (no-Twilio variant): after submit, success panel shows "Send Details on WhatsApp" which opens wa.me/918252244536 with the full enquiry pre-filled. Note: wa.me links cannot attach the photo; the reference photo stays linked to the enquiry in the database.
+- Google Map Embed: live interactive map iframe in the Visit section (FCB Cake Wala pin, MG Rd).
+- Twilio-based fully automatic alerts remain possible later if the owner provides Twilio Account SID + Auth Token + WhatsApp sender.
+
 ## Backlog
 - P0: Real phone/WhatsApp number from owner.
 - P1: Replace sample reviews with real Google reviews (or embed Google review widget).

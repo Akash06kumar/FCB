@@ -43,6 +43,11 @@ Build a premium, modern, highly converting local food business website for FCB C
 - Google Map Embed: live interactive map iframe in the Visit section (FCB Cake Wala pin, MG Rd).
 - Twilio-based fully automatic alerts remain possible later if the owner provides Twilio Account SID + Auth Token + WhatsApp sender.
 
+## Updates (2026-07, round 4)
+- Admin area at /admin (JWT auth, env-seeded admin: admin@fcbcakewala.in / FCBCake@2026): lists all enquiries with photos and contact details.
+- Photo Cake Gallery: one tap on "Feature in Gallery" publishes the enquiry's photo to the public gallery under "Fresh from our kitchen — customer celebrations" (GET /api/gallery). Customer name/phone never shown publicly. Toggle again to remove.
+- GET /api/enquiries is now admin-protected (401 without token); brute-force lockout on login (5 tries / 15 min).
+
 ## Backlog
 - P0: Real phone/WhatsApp number from owner.
 - P1: Replace sample reviews with real Google reviews (or embed Google review widget).

@@ -1,6 +1,9 @@
-from fastapi import FastAPI, APIRouter, HTTPException, UploadFile, File
+from fastapi import FastAPI, APIRouter, HTTPException, UploadFile, File, Request
 from fastapi.responses import Response
 from dotenv import load_dotenv
+
+load_dotenv()
+
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
@@ -8,9 +11,11 @@ import logging
 import uuid
 from pathlib import Path
 import requests
+import bcrypt
+import jwt as pyjwt
 from pydantic import BaseModel, Field, ConfigDict, BeforeValidator
 from typing import List, Optional, Annotated
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from bson import ObjectId
 
 ROOT_DIR = Path(__file__).parent
@@ -28,6 +33,7 @@ STORAGE_URL = STORAGE_BASE.rstrip("/") + "/objstore/api/v1/storage"
 EMERGENT_KEY = os.environ.get("EMERGENT_LLM_KEY")
 APP_NAME = "fcb-cake-wala"
 storage_key = None
+JWT_ALGORITHM = "HS256"
 
 
 def init_storage(force: bool = False):
@@ -62,18 +68,57 @@ def get_object(path: str) -> tuple:
     return resp.content, resp.headers.get("Content-Type", "application/octet-stream")
 
 
+def hash_password(password: str) -> str:
+    return bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
+
+
+def verify_password(plain: str, hashed: str) -> bool:
+    return bcrypt.checkpw(plain.encode("utf-8"), hashed.encode("utf-8"))
+
+
+def create_access_token(user_id: str, email: str) -> str:
+    payload = {
+        "sub": user_id,
+        "email": email,
+        "exp": datetime.now(timezone.utc) + timedelta(hours=8),
+        "type": "access",
+    }
+    return pyjwt.encode(payload, os.environ["JWT_SECRET"], algorithm=JWT_ALGORITHM)
+
+
+async def require_admin(request: Request) -> dict:
+    auth_header = request.headers.get("Authorization", "")
+    token = auth_header[7:] if auth_header.startswith("Bearer ") else None
+    if not token:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+    try:
+        payload = pyjwt.decode(token, os.environ["JWT_SECRET"], algorithms=[JWT_ALGORITHM])
+        if payload.get("type") != "access":
+            raise HTTPException(status_code=401, detail="Invalid token type")
+    except pyjwt.ExpiredSignatureError:
+        raise HTTPException(status_code=401, detail="Token expired")
+    except pyjwt.InvalidTokenError:
+        raise HTTPException(status_code=401, detail="Invalid token")
+    user = await db.users.find_one({"_id": ObjectId(payload["sub"])})
+    if not user or user.get("role") != "admin":
+        raise HTTPException(status_code=401, detail="Admin not found")
+    user["_id"] = str(user["_id"])
+    user.pop("password_hash", None)
+    return user
+
+
 PyObjectId = Annotated[str, BeforeValidator(str)]
 
 
 class BaseDocument(BaseModel):
     model_config = ConfigDict(populate_by_name=True, arbitrary_types_allowed=True)
 
-    id: Optional[PyObjectId] = Field(default=None, alias="_id")
+    id: Optional[PyObjectId] = Field(default=None, alias="_id", serialization_alias="id")
 
     def to_mongo(self) -> dict:
-        doc = self.model_dump(by_alias=True, exclude_none=True)
-        if "_id" in doc:
-            doc["_id"] = ObjectId(doc["_id"])
+        doc = self.model_dump(by_alias=False, exclude_none=True)
+        if "id" in doc:
+            doc["_id"] = ObjectId(doc.pop("id"))
         return doc
 
     @classmethod
@@ -101,8 +146,14 @@ class Enquiry(BaseDocument):
     event_date: Optional[str] = None
     message: Optional[str] = None
     photo_path: Optional[str] = None
+    is_featured: bool = False
     status: str = "new"
     created_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+
+
+class LoginInput(BaseModel):
+    email: str
+    password: str
 
 
 @api_router.get("/")
@@ -110,17 +161,66 @@ async def root():
     return {"message": "FCB Cake Wala API", "status": "ok"}
 
 
+@api_router.post("/auth/login")
+async def login(input: LoginInput):
+    email = input.email.strip().lower()
+    attempts = await db.login_attempts.find_one({"identifier": email})
+    if attempts and attempts.get("count", 0) >= 5:
+        locked_until = attempts.get("locked_until")
+        if locked_until and datetime.fromisoformat(locked_until) > datetime.now(timezone.utc):
+            raise HTTPException(status_code=429, detail="Too many failed attempts. Try again in 15 minutes.")
+    user = await db.users.find_one({"email": email})
+    if not user or not verify_password(input.password, user["password_hash"]):
+        await db.login_attempts.update_one(
+            {"identifier": email},
+            {"$inc": {"count": 1}, "$set": {"locked_until": (datetime.now(timezone.utc) + timedelta(minutes=15)).isoformat()}},
+            upsert=True,
+        )
+        raise HTTPException(status_code=401, detail="Invalid email or password")
+    await db.login_attempts.delete_one({"identifier": email})
+    return {"token": create_access_token(str(user["_id"]), email), "email": email, "name": user.get("name", "Admin")}
+
+
+@api_router.get("/auth/me")
+async def auth_me(request: Request):
+    return await require_admin(request)
+
+
 @api_router.post("/enquiries", response_model=Enquiry)
 async def create_enquiry(input: EnquiryCreate):
     enquiry = Enquiry(**input.model_dump())
-    await db.enquiries.insert_one(enquiry.to_mongo())
+    result = await db.enquiries.insert_one(enquiry.to_mongo())
+    enquiry.id = str(result.inserted_id)
     return enquiry
 
 
 @api_router.get("/enquiries", response_model=List[Enquiry])
-async def list_enquiries():
+async def list_enquiries(request: Request):
+    await require_admin(request)
     docs = await db.enquiries.find().sort("created_at", -1).to_list(200)
     return [Enquiry.from_mongo(d) for d in docs]
+
+
+@api_router.post("/admin/enquiries/{enquiry_id}/feature")
+async def toggle_feature(enquiry_id: str, request: Request):
+    await require_admin(request)
+    doc = await db.enquiries.find_one({"_id": ObjectId(enquiry_id)})
+    if not doc:
+        raise HTTPException(status_code=404, detail="Enquiry not found")
+    if not doc.get("photo_path"):
+        raise HTTPException(status_code=400, detail="Enquiry has no photo to feature")
+    new_value = not doc.get("is_featured", False)
+    await db.enquiries.update_one({"_id": ObjectId(enquiry_id)}, {"$set": {"is_featured": new_value}})
+    return {"id": enquiry_id, "is_featured": new_value}
+
+
+@api_router.get("/gallery")
+async def public_gallery():
+    docs = await db.enquiries.find({"is_featured": True, "photo_path": {"$ne": None}}).sort("created_at", -1).to_list(50)
+    return [
+        {"id": str(d["_id"]), "url": f"/api/files/{d['photo_path']}", "cake_type": d.get("cake_type"), "created_at": d.get("created_at")}
+        for d in docs
+    ]
 
 
 @api_router.post("/uploads")
@@ -167,6 +267,23 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(level
 logger = logging.getLogger(__name__)
 
 
+async def seed_admin():
+    admin_email = os.environ.get("ADMIN_EMAIL", "admin@example.com").lower()
+    admin_password = os.environ.get("ADMIN_PASSWORD", "admin123")
+    existing = await db.users.find_one({"email": admin_email})
+    if existing is None:
+        await db.users.insert_one({
+            "email": admin_email,
+            "password_hash": hash_password(admin_password),
+            "name": "FCB Admin",
+            "role": "admin",
+            "created_at": datetime.now(timezone.utc).isoformat(),
+        })
+        logger.info(f"Admin seeded: {admin_email}")
+    elif not verify_password(admin_password, existing["password_hash"]):
+        await db.users.update_one({"email": admin_email}, {"$set": {"password_hash": hash_password(admin_password)}})
+
+
 @app.on_event("startup")
 async def startup():
     try:
@@ -174,6 +291,9 @@ async def startup():
         logger.info("Object storage initialized")
     except Exception as e:
         logger.error(f"Storage init failed: {e}")
+    await db.users.create_index("email", unique=True)
+    await db.login_attempts.create_index("identifier")
+    await seed_admin()
 
 
 @app.on_event("shutdown")

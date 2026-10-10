@@ -10,6 +10,7 @@ import { ReviewsSection } from "./components/ReviewsSection";
 import { EnquiryForm } from "./components/EnquiryForm";
 import { LocationSection } from "./components/LocationSection";
 import { Footer } from "./components/Footer";
+import AdminPage from "./pages/AdminPage";
 
 const Home = () => (
   <div className="bg-[#140F0E] min-h-screen">
@@ -33,6 +34,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/admin" element={<AdminPage />} />
       </Routes>
     </BrowserRouter>
   );

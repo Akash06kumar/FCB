@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Clock, MapPin, Phone, Star, Truck } from "lucide-react";
+import { Clock, MapPin, MessageCircle, Phone, Star, Truck } from "lucide-react";
 import { IMAGES, SITE } from "../siteData";
 
 const fadeUp = (delay) => ({
@@ -51,6 +51,15 @@ export const Hero = () => (
             className="inline-flex items-center gap-2 border border-[rgba(212,175,55,0.5)] hover:border-[#D4AF37] text-amber-100 font-semibold px-7 py-3.5 rounded-full transition-all hover:-translate-y-0.5"
           >
             View Menu & Prices
+          </a>
+          <a
+            href={SITE.whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-testid="hero-btn-whatsapp"
+            className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#3ee07a] text-[#140F0E] font-semibold px-7 py-3.5 rounded-full transition-all hover:-translate-y-0.5"
+          >
+            <MessageCircle className="w-4 h-4" /> WhatsApp Order
           </a>
         </motion.div>
 

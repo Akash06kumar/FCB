@@ -7,8 +7,11 @@ export const SITE = {
   shortAddress: "MG Rd, near Maheshwaram Temple, Aurangabad, Bihar",
   hours: "9:00 AM – 9:00 PM",
   hoursNote: "Open all 7 days",
-  phone: "+919876543210",
-  phoneDisplay: "+91 98765 43210",
+  phone: "+918252244536",
+  phoneDisplay: "+91 82522 44536",
+  whatsapp: "918252244536",
+  whatsappUrl:
+    "https://wa.me/918252244536?text=Hi%20FCB%20Cake%20Wala!%20I%27d%20like%20to%20order%20a%20cake.",
   mapsUrl:
     "https://www.google.com/maps/search/?api=1&query=FCB+Cake+Wala+MG+Rd+Maheshwaram+Temple+Aurangabad+Bihar+824101",
 };
@@ -72,18 +75,21 @@ export const SERVICES = [
 
 export const REVIEWS = [
   {
-    name: "Ved Prakash",
-    text: "Best cake shop in Aurangabad. The Royal Special cake for my daughter's birthday was stunning and tasted even better.",
+    name: "Alok Kumar",
+    meta: "7 photos · 4 years ago",
+    text: "A place to have authentic cakes, pastries and cookies. Delicious stuff, not too costly, affordable prices and a neat & clean shop. Staff are also good. Every cake is special here — I have always relied on this place for cake. They maintain good quality and hygiene every time. Thank you!!",
     stars: 5,
   },
   {
-    name: "Priya Kumari",
-    text: "Ordered a pineapple cake on short notice — fresh, soft and delivered on time. Staff is very warm and welcoming.",
+    name: "Rimjhim Kumari",
+    meta: "3 years ago",
+    text: "Being a hotelier with Taj, I had never ordered a cake from any other bakery in 5 years. Celebrating my birthday in my hometown Aurangabad, I was very particular about taste, flavour & presentation — and it was one of the best experiences. They listen to your requests patiently and give the best. Worth the money. Highly, highly recommend.",
     stars: 5,
   },
   {
-    name: "Aman Raj",
-    text: "Beautiful shop on MG Road. Great pastries, fair prices and they customised our anniversary cake exactly as we wanted.",
+    name: "Gauri Singh",
+    meta: "a year ago",
+    text: "The cake was absolutely perfect — just what we wanted and really tasty too. We received so many compliments on its deliciousness and appearance. Even guests who don't usually like cake raved about it. It was a huge hit and a major part of our celebration. We're still reminiscing about it!",
     stars: 5,
   },
 ];

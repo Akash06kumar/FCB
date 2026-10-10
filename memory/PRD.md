@@ -30,9 +30,12 @@ Build a premium, modern, highly converting local food business website for FCB C
 - Location section with address, hours, landmarks, Get Directions link; footer + sticky mobile Call/Order bar.
 
 ## Known Placeholders
-- Phone number `+91 98765 43210` is a PLACEHOLDER — owner must supply real number (used in all Call/WhatsApp CTAs, defined once in `src/siteData.js`).
-- Review texts are samples.
-- Menu prices are estimates from the counter photo.
+- Menu prices are estimates from the counter photo — confirm with owner.
+
+## Updates (2026-07, round 2)
+- Real phone number added: +91 82522 44536 (08252244536) across all Call CTAs.
+- WhatsApp ordering live: green WhatsApp buttons in navbar, hero, footer and mobile quick bar → wa.me/918252244536 with prefilled order message.
+- Real Google reviews published: Alok Kumar, Rimjhim Kumari, Gauri Singh (replaced all sample reviews).
 
 ## Backlog
 - P0: Real phone/WhatsApp number from owner.

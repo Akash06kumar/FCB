@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CakeSlice, Menu as MenuIcon, Phone, Star, X } from "lucide-react";
+import { CakeSlice, Menu as MenuIcon, MessageCircle, Phone, Star, X } from "lucide-react";
 import { SITE } from "../siteData";
 
 const LINKS = [
@@ -37,6 +37,15 @@ export const Navbar = () => {
             <span className="text-neutral-400">Google</span>
           </div>
           <a
+            href={SITE.whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-testid="nav-cta-whatsapp"
+            className="hidden sm:inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#3ee07a] text-[#140F0E] text-sm font-semibold px-4 py-2 rounded-full transition-colors"
+          >
+            <MessageCircle className="w-4 h-4" /> WhatsApp
+          </a>
+          <a
             href={`tel:${SITE.phone}`}
             data-testid="nav-cta-call"
             className="hidden sm:inline-flex items-center gap-2 bg-[#D4AF37] hover:bg-[#E5B869] text-[#140F0E] text-sm font-semibold px-4 py-2 rounded-full transition-colors"
@@ -60,9 +69,14 @@ export const Navbar = () => {
               {l.label}
             </a>
           ))}
-          <a href={`tel:${SITE.phone}`} data-testid="nav-cta-call-mobile" className="inline-flex items-center gap-2 bg-[#D4AF37] text-[#140F0E] text-sm font-semibold px-4 py-2.5 rounded-full w-fit">
-            <Phone className="w-4 h-4" /> Call Now
-          </a>
+          <div className="flex gap-3">
+            <a href={`tel:${SITE.phone}`} data-testid="nav-cta-call-mobile" className="inline-flex items-center gap-2 bg-[#D4AF37] text-[#140F0E] text-sm font-semibold px-4 py-2.5 rounded-full w-fit">
+              <Phone className="w-4 h-4" /> Call Now
+            </a>
+            <a href={SITE.whatsappUrl} target="_blank" rel="noopener noreferrer" data-testid="nav-cta-whatsapp-mobile" className="inline-flex items-center gap-2 bg-[#25D366] text-[#140F0E] text-sm font-semibold px-4 py-2.5 rounded-full w-fit">
+              <MessageCircle className="w-4 h-4" /> WhatsApp
+            </a>
+          </div>
         </div>
       )}
     </header>

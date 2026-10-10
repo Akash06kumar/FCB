@@ -37,7 +37,7 @@ export const ReviewsSection = () => (
                   ))}
                 </div>
                 <p className="text-sm font-semibold text-amber-100">{r.name}</p>
-                <p className="text-xs text-neutral-500">Google review</p>
+                <p className="text-xs text-neutral-500">Google review · {r.meta}</p>
               </footer>
             </motion.blockquote>
           ))}

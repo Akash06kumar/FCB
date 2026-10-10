@@ -1,4 +1,4 @@
-import { Accessibility, CakeSlice, Heart, MapPin, Phone } from "lucide-react";
+import { Accessibility, CakeSlice, Heart, MapPin, MessageCircle, Phone } from "lucide-react";
 import { SITE } from "../siteData";
 
 export const Footer = () => (
@@ -43,6 +43,9 @@ export const Footer = () => (
             <a href={`tel:${SITE.phone}`} data-testid="footer-call-btn" className="flex items-center gap-2 text-sm text-neutral-300 hover:text-[#D4AF37] transition-colors mb-3">
               <Phone className="w-4 h-4" /> {SITE.phoneDisplay}
             </a>
+            <a href={SITE.whatsappUrl} target="_blank" rel="noopener noreferrer" data-testid="footer-whatsapp-btn" className="flex items-center gap-2 text-sm text-neutral-300 hover:text-[#25D366] transition-colors mb-3">
+              <MessageCircle className="w-4 h-4" /> WhatsApp {SITE.phoneDisplay}
+            </a>
             <nav className="flex flex-col gap-2 text-sm text-neutral-400">
               <a href="#menu" className="hover:text-amber-100 transition-colors">Menu</a>
               <a href="#order" className="hover:text-amber-100 transition-colors">Custom Orders</a>
@@ -61,8 +64,8 @@ export const Footer = () => (
       <a href={`tel:${SITE.phone}`} data-testid="footer-call-btn-mobile" className="flex-1 inline-flex items-center justify-center gap-2 bg-[#D4AF37] text-[#140F0E] font-semibold text-sm py-3 rounded-full">
         <Phone className="w-4 h-4" /> Call Shop
       </a>
-      <a href="#order" data-testid="footer-order-btn-mobile" className="flex-1 inline-flex items-center justify-center gap-2 bg-[#EC4899] text-white font-semibold text-sm py-3 rounded-full">
-        <CakeSlice className="w-4 h-4" /> Order Cake
+      <a href={SITE.whatsappUrl} target="_blank" rel="noopener noreferrer" data-testid="footer-whatsapp-btn-mobile" className="flex-1 inline-flex items-center justify-center gap-2 bg-[#25D366] text-[#140F0E] font-semibold text-sm py-3 rounded-full">
+        <MessageCircle className="w-4 h-4" /> WhatsApp
       </a>
     </div>
   </>

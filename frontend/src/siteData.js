@@ -93,3 +93,66 @@ export const REVIEWS = [
     stars: 5,
   },
 ];
+
+export const FESTIVALS = [
+  {
+    id: "durga-puja",
+    name: "Durga Puja",
+    icon: "Sparkles",
+    headline: "Pujo Special — bulk sweets for pandals & family gatherings",
+    sub: "Laddoo, sandesh, kaju katli and more, made fresh for your pandal, guests and bhog. Book early — slots fill fast.",
+    chips: ["Motichoor Laddoo", "Sandesh", "Kaju Katli", "Gulab Jamun"],
+    waText: "Hi FCB Cake Wala! Durga Puja bulk sweet order enquiry — please share rates and slots.",
+    theme: {
+      bg: "bg-gradient-to-r from-[#2A0E0E] via-[#3B1414] to-[#1E1614]",
+      accent: "text-[#FF6B5E]",
+      chip: "border-[#FF6B5E]/40 text-[#FFB4A8]",
+      dot: "bg-[#FF6B5E]",
+    },
+  },
+  {
+    id: "diwali",
+    name: "Diwali",
+    icon: "Flame",
+    headline: "Diwali gift hampers & bulk sweet boxes, ready to light up your gifting",
+    sub: "Custom-branded gift boxes, kaju katli by the kilo and soan papdi packs for offices, shops and families.",
+    chips: ["Kaju Katli", "Soan Papdi", "Gift Hampers", "Dry Fruit Sweets"],
+    waText: "Hi FCB Cake Wala! Diwali bulk sweet / gift hamper enquiry — please share your catalogue and prices.",
+    theme: {
+      bg: "bg-gradient-to-r from-[#241030] via-[#33164a] to-[#1E1614]",
+      accent: "text-[#F5B942]",
+      chip: "border-[#F5B942]/40 text-[#F7D68A]",
+      dot: "bg-[#F5B942]",
+    },
+  },
+  {
+    id: "chhath",
+    name: "Chhath",
+    icon: "Sunrise",
+    headline: "Chhath Puja specials — thekua & prasad made the traditional way",
+    sub: "Fresh thekua, rice kheer and prasad packs for arghya — hygienic, pure-ghee, made in bulk for your ghat and family.",
+    chips: ["Thekua", "Prasad Packs", "Rice Kheer", "Pure Ghee Sweets"],
+    waText: "Hi FCB Cake Wala! Chhath Puja bulk order enquiry (thekua / prasad) — please share rates.",
+    theme: {
+      bg: "bg-gradient-to-r from-[#2E1708] via-[#42240d] to-[#1E1614]",
+      accent: "text-[#FF9E45]",
+      chip: "border-[#FF9E45]/40 text-[#FFC48F]",
+      dot: "bg-[#FF9E45]",
+    },
+  },
+  {
+    id: "wedding-season",
+    name: "Wedding Season",
+    icon: "Heart",
+    headline: "Wedding season — bulk sweets, dessert counters & showstopper cakes",
+    sub: "From engagement to reception: tiered cakes, sweet platters per plate, and full dessert tables for your big day.",
+    chips: ["Tiered Cakes", "Sweet Platters", "Dessert Counters", "Bulk Laddoo"],
+    waText: "Hi FCB Cake Wala! Wedding bulk order enquiry (sweets / cake / dessert counter) — please share packages.",
+    theme: {
+      bg: "bg-gradient-to-r from-[#33101f] via-[#47182c] to-[#1E1614]",
+      accent: "text-[#F472B6]",
+      chip: "border-[#F472B6]/40 text-[#F9A8D4]",
+      dot: "bg-[#F472B6]",
+    },
+  },
+];

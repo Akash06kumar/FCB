@@ -48,6 +48,10 @@ Build a premium, modern, highly converting local food business website for FCB C
 - Photo Cake Gallery: one tap on "Feature in Gallery" publishes the enquiry's photo to the public gallery under "Fresh from our kitchen — customer celebrations" (GET /api/gallery). Customer name/phone never shown publicly. Toggle again to remove.
 - GET /api/enquiries is now admin-protected (401 without token); brute-force lockout on login (5 tries / 15 min).
 
+## Updates (2026-07, round 5)
+- Editorial marquee ticker at the very top of the page (bulk orders, 4.9 rating, hours — slow scroll, pauses on hover).
+- Festive Banner directly under the marquee: tabs for Durga Puja / Diwali / Chhath / Wedding Season, auto-rotating every 5s (pauses on hover), each with its own colour restyle, sweet chips, WhatsApp bulk-enquiry CTA (festival-specific prefilled message to 918252244536) and order-form CTA. Festival content lives in FESTIVALS in src/siteData.js.
+
 ## Backlog
 - P0: Real phone/WhatsApp number from owner.
 - P1: Replace sample reviews with real Google reviews (or embed Google review widget).

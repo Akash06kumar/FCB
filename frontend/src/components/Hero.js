@@ -15,7 +15,7 @@ export const Hero = () => (
       <div className="absolute inset-0 bg-gradient-to-b from-[#140F0E]/70 via-[#140F0E]/80 to-[#140F0E]" />
     </div>
 
-    <div className="relative max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 pt-28 pb-20 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
+    <div className="relative max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 pt-14 pb-20 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
       <div className="lg:col-span-7">
         <motion.div {...fadeUp(0)} data-testid="hero-rating-badge" className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[rgba(212,175,55,0.35)] bg-[#1E1614]/80 mb-7">
           <span className="flex">

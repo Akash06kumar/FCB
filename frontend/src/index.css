@@ -88,6 +88,23 @@
     text-shadow: 0 0 18px rgba(236, 72, 153, 0.55), 0 0 42px rgba(236, 72, 153, 0.25);
 }
 
+@keyframes marquee-scroll {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.marquee-track {
+    animation: marquee-scroll 36s linear infinite;
+}
+
+.marquee-track:hover {
+    animation-play-state: paused;
+}
+
 .glass {
     background: rgba(20, 15, 14, 0.72);
     backdrop-filter: blur(18px);

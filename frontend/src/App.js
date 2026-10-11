@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "sonner";
 import { Navbar } from "./components/Navbar";
 import { Marquee } from "./components/Marquee";
-import { FestiveBanner } from "./components/FestiveBanner";
 import { Hero } from "./components/Hero";
 import { MenuSection } from "./components/MenuSection";
 import { ServicesSection } from "./components/ServicesSection";
@@ -19,7 +18,6 @@ const Home = () => (
     <Navbar />
     <main>
       <Marquee />
-      <FestiveBanner />
       <Hero />
       <MenuSection />
       <ServicesSection />

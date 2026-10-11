@@ -51,6 +51,7 @@ Build a premium, modern, highly converting local food business website for FCB C
 ## Updates (2026-07, round 5)
 - Editorial marquee ticker at the very top of the page (bulk orders, 4.9 rating, hours — slow scroll, pauses on hover).
 - Festive Banner directly under the marquee: tabs for Durga Puja / Diwali / Chhath / Wedding Season, auto-rotating every 5s (pauses on hover), each with its own colour restyle, sweet chips, WhatsApp bulk-enquiry CTA (festival-specific prefilled message to 918252244536) and order-form CTA. Festival content lives in FESTIVALS in src/siteData.js.
+- REVERTED (round 6): FestiveBanner removed from the page per owner request ("last update was pretty good" = pre-banner state). Component file and FESTIVALS data kept but unused; marquee ticker retained.
 
 ## Backlog
 - P0: Real phone/WhatsApp number from owner.

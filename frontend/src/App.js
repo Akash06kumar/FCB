@@ -2,7 +2,6 @@ import "@/App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "sonner";
 import { Navbar } from "./components/Navbar";
-import { Marquee } from "./components/Marquee";
 import { Hero } from "./components/Hero";
 import { MenuSection } from "./components/MenuSection";
 import { ServicesSection } from "./components/ServicesSection";
@@ -17,7 +16,6 @@ const Home = () => (
   <div className="bg-[#140F0E] min-h-screen">
     <Navbar />
     <main>
-      <Marquee />
       <Hero />
       <MenuSection />
       <ServicesSection />
